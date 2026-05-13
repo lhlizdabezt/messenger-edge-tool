@@ -1,48 +1,97 @@
 # Messenger Edge Tool
 
-Công cụ chạy cục bộ để mở Messenger bằng Microsoft Edge, điền nội dung tin nhắn vào ô chat và chỉ gửi khi bạn xác nhận.
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=28&pause=900&color=2563EB&center=true&vCenter=true&width=900&lines=AI-assisted+Messenger+drafting+for+Microsoft+Edge;Python+desktop+automation+with+Playwright;Context+extraction%2C+reply+drafting%2C+human+confirmation" alt="Animated Messenger Edge Tool headline" />
+</p>
 
-Công cụ có thêm tab `AI viết nháp` để tạo bản nháp tin nhắn. Bạn có thể đọc, chỉnh lại nội dung rồi mới điền hoặc gửi.
+<p align="center">
+  <a href="https://github.com/lhlizdabezt/messenger-edge-tool/releases/latest"><img src="https://img.shields.io/github/v/release/lhlizdabezt/messenger-edge-tool?style=for-the-badge&logo=github&label=Release" alt="Latest release" /></a>
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+" />
+  <img src="https://img.shields.io/badge/Microsoft%20Edge-Playwright-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white" alt="Microsoft Edge and Playwright" />
+  <img src="https://img.shields.io/badge/OpenAI--compatible-LLM-10A37F?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI-compatible LLM" />
+  <img src="https://img.shields.io/badge/Human--in--the--loop-Default-0F766E?style=for-the-badge" alt="Human in the loop" />
+</p>
 
-## Cài đặt
+<p align="center">
+  <b>Messenger Edge Tool</b> is a local Windows desktop companion for reading visible Messenger context, generating AI-assisted reply drafts, and filling the Messenger composer through Microsoft Edge only when the user is in control.
+</p>
 
-Mở PowerShell trong thư mục này, sau đó chạy:
+<p align="center">
+  <sub>Python · Tkinter · Playwright · Microsoft Edge persistent profile · OpenAI-compatible API · Messenger context extraction</sub>
+</p>
+
+---
+
+## Why This Repo Exists
+
+Most chat automation demos either skip context quality or send messages too aggressively. This project takes the safer engineering route:
+
+- **Local-first desktop app**: runs from this folder with a repo-local virtual environment.
+- **Microsoft Edge runtime**: uses Playwright `channel="msedge"` and a dedicated `edge_profile`.
+- **Context-aware drafting**: extracts visible `Them:` / `Me:` conversation lines before calling the AI model.
+- **Manual send by default**: drafts are filled into Messenger, then the user reviews before sending.
+- **Continuous auto mode**: can watch for new incoming lines, dedupe replies, and keep running until stopped.
+
+---
+
+## Product Flow
+
+```mermaid
+flowchart LR
+    A["Tkinter desktop UI"] --> B["Microsoft Edge persistent profile"]
+    B --> C["Messenger conversation"]
+    C --> D["Visible chat context extraction"]
+    D --> E["OpenAI-compatible chat/completions API"]
+    E --> F["AI reply draft"]
+    F --> G["Fill Messenger composer"]
+    G --> H["User reviews and sends"]
+```
+
+---
+
+## Feature Matrix
+
+| Area | Capability | Engineering detail |
+| --- | --- | --- |
+| Browser automation | Opens Messenger in Edge | Playwright persistent context with `MESSENGER_BROWSER_CHANNEL=msedge` |
+| Drafting | Fills the chat composer | Uses the active `contenteditable` Messenger editor |
+| AI assistant | Generates reply drafts | OpenAI-compatible `/chat/completions` endpoint |
+| Context reading | Pulls visible conversation lines | Anchors extraction around the compose editor to avoid sidebar pollution |
+| Auto mode | Watches for new incoming messages | Replies once per latest `Them:` line and keeps auto active |
+| Privacy | Stores browser session locally | `edge_profile`, `.env`, contacts and caches are gitignored |
+| Safety | No blind bulk sending | Manual send is the default; demo auto-send is explicit opt-in |
+
+---
+
+## Quick Start
+
+Open PowerShell inside the repo folder:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\setup.ps1
 ```
 
-Lệnh trên sẽ tạo môi trường Python cục bộ và cài các thư viện cần thiết.
-
-## Chạy công cụ
-
-Mở file:
+Run the app:
 
 ```powershell
 .\run.bat
 ```
 
-Lần đầu Edge mở lên, hãy đăng nhập Messenger trong cửa sổ đó. Phiên đăng nhập được lưu trong thư mục `edge_profile` nằm cạnh tool, không lưu mật khẩu trong mã nguồn.
+On first launch, Microsoft Edge opens with a dedicated local profile. Log in to Messenger in that Edge window once; the session is stored in `edge_profile` beside the tool.
 
-## Cách dùng
+---
 
-1. Vào tab `Soạn tin`.
-2. Nhập link Messenger, username hoặc ID vào ô `Link / username / id`.
-3. Nhập nội dung tin nhắn, hoặc chuyển sang tab `AI viết nháp` để tạo bản nháp.
-4. Bấm `Điền tin nhắn` nếu chỉ muốn điền nội dung vào ô chat.
-5. Bấm `Gửi có xác nhận` nếu muốn tool điền nội dung và gửi sau khi bạn xác nhận.
+## AI Configuration
 
-Bạn có thể lưu liên hệ bằng `Tên gợi nhớ` + `Lưu liên hệ`. Danh sách liên hệ được lưu trong file `contacts.json`.
+The app supports OpenAI-compatible providers. For Woku Shop, use:
 
-## Dùng AI
+| Field | Value |
+| --- | --- |
+| API key | `sk-...` |
+| Base URL | `https://llm.wokushop.com/v1` |
+| Model | `gpt-4o-mini` |
 
-Bạn cần một API key tương thích OpenAI. Nếu dùng Woku Shop, cấu hình như sau:
-
-1. `API key`: key Woku bắt đầu bằng `sk-...`
-2. `Base URL`: `https://llm.wokushop.com/v1`
-3. `Model`: `gpt-4o-mini`
-
-Bạn cũng có thể đặt biến môi trường trên Windows:
+Optional Windows environment variables:
 
 ```powershell
 setx OPENAI_API_KEY "sk-..."
@@ -50,27 +99,67 @@ setx OPENAI_BASE_URL "https://llm.wokushop.com/v1"
 setx OPENAI_MODEL "gpt-4o-mini"
 ```
 
-Sau khi đặt biến môi trường, hãy mở lại `run.bat`.
+Restart `run.bat` after changing environment variables.
 
-Nếu dùng OpenAI chính thức, đổi `Base URL` thành `https://api.openai.com/v1` và dùng API key OpenAI hợp lệ.
+For official OpenAI, set `OPENAI_BASE_URL` to `https://api.openai.com/v1` and provide a valid OpenAI API key.
 
-Trong tab AI, nhập `Bối cảnh` nếu cần, nhập điều muốn nói vào `Ý muốn nói`, chọn giọng văn rồi bấm `AI soạn nháp`.
+---
 
-Bạn cũng có thể để tool đọc ngữ cảnh từ Messenger:
+## Usage
 
-1. Mở đúng cuộc trò chuyện trong tab `Soạn tin`.
-2. Chuyển sang tab `AI viết nháp`.
-3. Bấm `Đọc chat` để đưa các dòng chat đang hiển thị vào ô `Bối cảnh`.
-4. Bấm `Đọc chat + điền trả lời` để tool đọc chat, gọi AI và điền câu trả lời vào ô chat Messenger.
-5. Bấm `Bật auto khi có tin mới` nếu muốn tool ghi nhớ đoạn chat hiện tại. Mỗi tin mới từ đối phương chỉ được xử lý một lần, sau đó tool tiếp tục chờ tin tiếp theo.
-6. Nếu chỉ dùng demo với chat test, tick `Demo auto gửi` trước khi bật auto. Khi đó tool sẽ tự bấm Enter để gửi sau khi AI soạn xong.
+1. Open the `Soan tin` tab.
+2. Enter a Messenger link, username, or thread ID.
+3. Use `Dien tin nhan` to fill the composer without sending.
+4. Use `Gui co xac nhan` only when you want the tool to confirm before sending.
+5. Open `AI viet nhap` to generate drafts from context and intent.
+6. Use `Doc chat` to pull visible Messenger context into the AI tab.
+7. Use `Doc chat + dien tra loi` to read context, draft a reply, and fill it into Messenger.
+8. Use `Bat auto khi co tin moi` when you want the tool to keep watching for new incoming messages.
 
-Mặc định tool không tự bấm Enter. Chế độ `Demo auto gửi` phải được bật riêng. Auto sẽ tiếp tục chạy cho đến khi bạn tắt auto hoặc đóng tool.
+`Demo auto gui` is intentionally separate. Leave it off for normal use.
 
-## Lưu ý
+---
 
-- Không dùng tool để spam, quấy rối hoặc gửi tin nhắn cho người không muốn nhận.
-- AI chỉ nên dùng để soạn nháp. Bạn vẫn là người kiểm tra và xác nhận nội dung trước khi gửi.
-- Nếu tool không tìm thấy ô chat, hãy mở đúng cuộc trò chuyện rồi thử lại.
-- Nếu Edge không mở được, hãy kiểm tra Microsoft Edge bản desktop đã được cài trên máy.
-- Các thư mục/file như `.venv`, `edge_profile`, `contacts.json` và `.env` đã được đưa vào `.gitignore` để tránh đẩy dữ liệu cá nhân hoặc thông tin đăng nhập lên GitHub.
+## Repository Layout
+
+```text
+messenger-edge-tool/
+├─ messenger_tool.py      # Tkinter UI, Playwright session, AI client, context extraction
+├─ requirements.txt       # Runtime dependency pin
+├─ setup.ps1              # Windows setup and local virtual environment repair
+├─ run.bat                # One-click app launcher
+└─ README.md              # Public documentation
+```
+
+Runtime files such as `.venv`, `edge_profile`, `.env` and `contacts.json` stay local and are ignored by git.
+
+---
+
+## Reviewer Notes
+
+- **Primary stack**: Python, Tkinter, Playwright, Microsoft Edge, OpenAI-compatible APIs.
+- **Core engineering problem**: safely connect a browser DOM workflow with AI drafting while preserving user review.
+- **Notable reliability work**: Edge runtime migration, broken `.venv` repair path, Messenger same-thread normalization, compose-editor anchored context extraction, and continuous auto-reply dedupe.
+- **Security posture**: no credentials in source control, no password storage in code, no default blind sending.
+
+---
+
+## Release
+
+The first public release is intended to document the stable Edge-based workflow:
+
+- Microsoft Edge Playwright runtime.
+- Local setup and launcher scripts.
+- Messenger context reading and AI drafting.
+- Continuous auto mode with one reply per new incoming message.
+- Human-in-the-loop send behavior by default.
+
+See the latest release at [GitHub Releases](https://github.com/lhlizdabezt/messenger-edge-tool/releases/latest).
+
+---
+
+## Safety
+
+This tool is for personal drafting assistance and workflow experimentation. Do not use it for spam, harassment, credential collection, platform abuse, or sending messages to people who do not want to receive them.
+
+The AI output should be reviewed by the user before sending. The tool helps write drafts; it does not replace judgment.
