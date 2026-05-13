@@ -23,7 +23,7 @@
       .mono { font: 700 16px Consolas, monospace; fill: #a7f3d0; }
       .card { fill: rgba(15,23,42,.62); stroke: rgba(255,255,255,.22); stroke-width: 1.2; }
       .label { font: 700 16px Segoe UI, Arial, sans-serif; fill: #ecfeff; }
-      .wire { stroke: #22d3ee; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 18 14; animation: dash 3s linear infinite; filter: url(#glow); }
+      .wire { fill: none; stroke: #22d3ee; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 18 14; animation: dash 3s linear infinite; filter: url(#glow); }
     </style>
   </defs>
   <rect width="1100" height="300" rx="26" fill="url(#bg)"/>
@@ -48,9 +48,10 @@
     <rect x="925" y="176" width="118" height="60" rx="18" class="card"/>
     <text x="957" y="211" class="label">Draft</text>
   </g>
-  <path class="wire" d="M330 194 C430 116 540 222 650 148 S820 134 945 188"/>
-  <circle cx="330" cy="194" r="7" fill="#fbbf24" filter="url(#glow)" style="animation:blink 1.8s ease-in-out infinite"/>
-  <circle cx="650" cy="148" r="7" fill="#a7f3d0" filter="url(#glow)" style="animation:blink 2.3s ease-in-out infinite"/>
-  <circle cx="945" cy="188" r="7" fill="#fbbf24" filter="url(#glow)" style="animation:blink 2s ease-in-out infinite"/>
+  <path class="wire" d="M775 134 H852 Q872 134 872 154 H932 Q952 154 952 134 H1016"/>
+  <path class="wire" opacity=".42" d="M830 246 H910 Q930 246 930 260 H1018" style="animation-delay:.55s"/>
+  <circle cx="872" cy="154" r="6" fill="#fbbf24" filter="url(#glow)" style="animation:blink 1.8s ease-in-out infinite"/>
+  <circle cx="952" cy="134" r="6" fill="#a7f3d0" filter="url(#glow)" style="animation:blink 2.3s ease-in-out infinite"/>
+  <circle cx="1018" cy="260" r="6" fill="#fbbf24" filter="url(#glow)" style="animation:blink 2s ease-in-out infinite"/>
   <text x="72" y="252" class="sub">Python Tkinter + browser DOM workflow + OpenAI compatible API</text>
 </svg>
