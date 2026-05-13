@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="300" viewBox="0 0 1100 300" role="img" aria-labelledby="title desc">
+  <title id="title">Messenger Edge Tool motion banner</title>
+  <desc id="desc">Animated SVG banner for Edge, Playwright, context extraction and AI drafting.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07111f"/>
+      <stop offset="48%" stop-color="#0f4c81"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes dash { to { stroke-dashoffset: -160; } }
+      @keyframes float { 0%,100% { transform: translateY(0); opacity: .78; } 50% { transform: translateY(-10px); opacity: 1; } }
+      @keyframes blink { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+      .title { font: 800 48px Segoe UI, Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
+      .sub { font: 650 20px Segoe UI, Arial, sans-serif; fill: #dbeafe; letter-spacing: 0; }
+      .mono { font: 700 16px Consolas, monospace; fill: #a7f3d0; }
+      .card { fill: rgba(15,23,42,.62); stroke: rgba(255,255,255,.22); stroke-width: 1.2; }
+      .label { font: 700 16px Segoe UI, Arial, sans-serif; fill: #ecfeff; }
+      .wire { stroke: #22d3ee; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 18 14; animation: dash 3s linear infinite; filter: url(#glow); }
+    </style>
+  </defs>
+  <rect width="1100" height="300" rx="26" fill="url(#bg)"/>
+  <g transform="translate(70 58)">
+    <text x="0" y="0" class="mono">local desktop automation / human-in-the-loop</text>
+    <text x="0" y="68" class="title">Messenger Edge Tool</text>
+    <text x="0" y="104" class="sub">Edge - Playwright - Context - AI Draft - Review</text>
+  </g>
+  <g style="animation: float 5.2s ease-in-out infinite">
+    <rect x="705" y="48" width="136" height="60" rx="18" class="card"/>
+    <text x="746" y="83" class="label">Edge</text>
+  </g>
+  <g style="animation: float 5.8s ease-in-out infinite">
+    <rect x="890" y="62" width="144" height="60" rx="18" class="card"/>
+    <text x="921" y="97" class="label">Playwright</text>
+  </g>
+  <g style="animation: float 6.3s ease-in-out infinite">
+    <rect x="735" y="172" width="148" height="60" rx="18" class="card"/>
+    <text x="771" y="207" class="label">Context</text>
+  </g>
+  <g style="animation: float 6.8s ease-in-out infinite">
+    <rect x="925" y="176" width="118" height="60" rx="18" class="card"/>
+    <text x="957" y="211" class="label">Draft</text>
+  </g>
+  <path class="wire" d="M330 194 C430 116 540 222 650 148 S820 134 945 188"/>
+  <circle cx="330" cy="194" r="7" fill="#fbbf24" filter="url(#glow)" style="animation:blink 1.8s ease-in-out infinite"/>
+  <circle cx="650" cy="148" r="7" fill="#a7f3d0" filter="url(#glow)" style="animation:blink 2.3s ease-in-out infinite"/>
+  <circle cx="945" cy="188" r="7" fill="#fbbf24" filter="url(#glow)" style="animation:blink 2s ease-in-out infinite"/>
+  <text x="72" y="252" class="sub">Python Tkinter + browser DOM workflow + OpenAI compatible API</text>
+</svg>
