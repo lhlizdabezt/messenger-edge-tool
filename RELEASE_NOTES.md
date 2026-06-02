@@ -1,17 +1,18 @@
-# English Portfolio Refresh
-
-## Main updates
-
-- Rewrote the public README in English for HR and engineering review.
-- Standardized the repository summary, reviewer map, evidence highlights, scope boundaries and release/tag links.
-- Preserved an evidence-first tone: clear technical nouns, bounded claims and no production ownership beyond the repository material.
-
-## Repository evidence
-
-- Tkinter desktop interface for user-controlled workflow.
-- Microsoft Edge and Playwright browser automation.
-- Local context extraction and AI draft-control pattern.
+# English Visual Portfolio Refresh - 2026-06-02
 
 ## Scope
 
-Personal productivity and portfolio tool. It is presented as human-in-the-loop automation, not unattended messaging automation.
+This refresh keeps `messenger-edge-tool` aligned with an English-facing engineering portfolio for HR and technical review.
+
+## Changes
+
+- Added an ASCII-safe animated SVG visual under `assets/portfolio-motion.svg`.
+- Embedded the visual in `README.md` for immediate GitHub rendering.
+- Standardized Markdown and binary asset handling through `.gitattributes`.
+- Kept the repository description evidence-first and scoped to: Python desktop automation.
+
+## Review Context
+
+Primary stack: Python, Tkinter, Microsoft Edge, Playwright, SQLite, AI draft control.
+
+The repository remains bounded to its real artifacts and does not claim production ownership beyond what the source tree, reports, code or release assets can support.
