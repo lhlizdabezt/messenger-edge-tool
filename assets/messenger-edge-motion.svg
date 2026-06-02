@@ -15,7 +15,6 @@
       </feMerge>
     </filter>
     <style>
-      @keyframes dash { to { stroke-dashoffset: -160; } }
       @keyframes float { 0%,100% { transform: translateY(0); opacity: .78; } 50% { transform: translateY(-10px); opacity: 1; } }
       @keyframes blink { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
       .title { font: 800 48px Segoe UI, Arial, sans-serif; fill: #ffffff; letter-spacing: 0; }
@@ -23,7 +22,7 @@
       .mono { font: 700 16px Consolas, monospace; fill: #a7f3d0; }
       .card { fill: rgba(15,23,42,.62); stroke: rgba(255,255,255,.22); stroke-width: 1.2; }
       .label { font: 700 16px Segoe UI, Arial, sans-serif; fill: #ecfeff; }
-      .wire { fill: none; stroke: #22d3ee; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 18 14; animation: dash 3s linear infinite; filter: url(#glow); }
+      .wire { fill: none; stroke: #22d3ee; stroke-width: 4; stroke-linecap: round; filter: url(#glow); }
     </style>
   </defs>
   <rect width="1100" height="300" rx="26" fill="url(#bg)"/>
