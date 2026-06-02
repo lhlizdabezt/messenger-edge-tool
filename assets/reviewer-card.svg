@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Messenger Edge Tool</title>
+  <desc id="desc">English reviewer card for Messenger Edge Tool.</desc>
+  <defs>
+    <style>
+      .panel { fill: #ffffff; opacity: 0.94; }
+      .label { fill: #0B3D91; font: 700 18px Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      .title { fill: #111827; font: 700 34px Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      .body { fill: #374151; font: 500 20px Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      .chip rect { fill: #F3F4F6; stroke: #D1D5DB; stroke-width: 1; }
+      .chip text { fill: #111827; font: 700 15px Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      .mark { fill: #ffffff; opacity: 0.22; animation: fade 4s ease-in-out infinite; }
+      .chip { animation: rise 4.8s ease-in-out infinite; }
+      @keyframes fade { 0%, 100% { opacity: 0.16; } 50% { opacity: 0.31; } }
+      @keyframes rise { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1200" height="360" rx="0" fill="#0B3D91"/>
+  <rect class="mark" x="850" y="42" width="120" height="120" rx="18"/>
+  <rect class="mark" x="980" y="86" width="70" height="70" rx="14"/>
+  <rect class="mark" x="910" y="205" width="165" height="54" rx="10"/>
+  <rect class="panel" x="44" y="36" width="820" height="288" rx="10"/>
+  <text class="label" x="70" y="78">LHLIZDABEZT ENGINEERING PORTFOLIO</text>
+  <text class="title" x="70" y="125"><tspan x="70" dy="0">Messenger Edge Tool</tspan></text>
+  <text class="body" x="70" y="220"><tspan x="70" dy="0">Local Edge context review and human-controlled draft support.</tspan></text>
+  <g class="chip" style="animation-delay:0.00s"><rect x="70" y="272" width="120" height="34" rx="8"/><text x="86" y="295">python</text></g> <g class="chip" style="animation-delay:0.16s"><rect x="204" y="272" width="120" height="34" rx="8"/><text x="220" y="295">tkinter</text></g> <g class="chip" style="animation-delay:0.32s"><rect x="338" y="272" width="120" height="34" rx="8"/><text x="354" y="295">playwright</text></g> <g class="chip" style="animation-delay:0.48s"><rect x="472" y="272" width="148" height="34" rx="8"/><text x="488" y="295">microsoft-edge</text></g>
+  <text x="920" y="304" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">IEEE style</text>
+  <text x="920" y="330" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="500">English reviewer guide</text>
+</svg>

@@ -1,16 +1,29 @@
-# Line-Free Visual Safety Pass - 2026-06-02
+# Reviewer-Ready English Portfolio Guide - 2026-06-02
 
-## Scope
+## Release Scope
 
-This release refreshes `messenger-edge-tool` SVG visuals for English-facing GitHub portfolio review.
+This release refreshes `lhlizdabezt/messenger-edge-tool` for professional portfolio review. It updates the public README, reviewer card, evidence map, contact links, FAQ, local inspection guide, topic guidance, and English release notes.
 
-## Changes
+## What Changed
 
-- Replaced line-based SVG motion with card-based, line-free visual layouts.
-- Kept SVG text English and ASCII-safe.
-- Removed connector-line, dashed-line, dotted-line and scan-line patterns from generated visual assets.
-- Preserved the repository description, topics, source files and release-backed evidence model.
+- Added a complete English reviewer guide aligned with HR, seminar, and engineering review expectations.
+- Added or refreshed `assets/reviewer-card.svg` with ASCII-safe English text and no moving dotted or curved connector lines.
+- Added structured instructions for review, local inspection, professional boundaries, release usage, and FAQ handling.
+- Standardized public contact links for GitHub, LinkedIn, Facebook, Instagram, YouTube, TikTok, email, and phone.
+- Clarified that public claims are limited to repository-backed evidence.
 
-## Review Context
+## Reviewer Notes
 
-The updated visuals are designed for GitHub README rendering, mobile review and HR or engineering portfolio screening.
+- Portfolio track: Python desktop tooling, Microsoft Edge automation, Playwright, and human-controlled AI drafting.
+- Primary stack: Python, Tkinter, Playwright, Microsoft Edge, Desktop tooling, Human-in-the-loop AI drafting.
+- Recommended topics: python, tkinter, playwright, microsoft-edge, desktop-app, automation, ai-tools, windows, human-in-the-loop, browser-automation.
+- Public language: English (United States).
+- Visual rule: no moving dotted paths, curved connector lines, or text placed behind moving line graphics.
+
+## Verification Checklist
+
+- README headings, captions, labels, and tables are in English.
+- SVG reviewer card uses ASCII-safe English text.
+- Visual evidence is linked from repository-local assets when available.
+- Release page can be used as a stable public review snapshot.
+- Repository topics and description should match the professional summary in this release.
