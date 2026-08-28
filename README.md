@@ -1,111 +1,41 @@
 # Messenger Edge Tool
 
-![Profile](https://img.shields.io/badge/Profile-lhlizdabezt-0B3D91?style=for-the-badge)
-![Writing](https://img.shields.io/badge/Writing-IEEE%20and%20Harvard%20style-1F6F5B?style=for-the-badge)
-![Language](https://img.shields.io/badge/Language-English%20US-7A1E3A?style=for-the-badge)
-![Review](https://img.shields.io/badge/Status-Reviewer%20Ready-333333?style=for-the-badge)
+<p align="center">
+  <img src="assets/messenger-edge-motion.svg" alt="Messenger Edge Tool local review workflow" width="82%" />
+</p>
 
-![Messenger Edge Tool reviewer card](assets/reviewer-card.svg)
+A Windows desktop utility for opening a selected Messenger conversation in Microsoft Edge, reviewing visible context, and preparing a reply draft. It uses Python, Tkinter, and Playwright with a local Edge profile.
 
-## Executive Summary
+## What the tool does
 
-This repository presents a local desktop assistant for extracting visible Messenger context through Microsoft Edge and supporting human-controlled draft preparation. The portfolio framing emphasizes local tooling, UI discipline, browser automation boundaries, and responsible use rather than unattended messaging automation.
-
-## Project Snapshot
-
-| Field | Details |
+| Capability | Evidence |
 |---|---|
-| Repository | [lhlizdabezt/messenger-edge-tool](https://github.com/lhlizdabezt/messenger-edge-tool) |
-| Portfolio Track | Python desktop tooling, Microsoft Edge automation, Playwright, and human-controlled AI drafting |
-| Public Status | Reviewer-ready English guide with release-backed evidence |
-| Latest Release | [Open stable release](https://github.com/lhlizdabezt/messenger-edge-tool/releases/latest) |
-| Owner Profile | [lhlizdabezt](https://github.com/lhlizdabezt) |
-| Contact | 22207056@student.hcmus.edu.vn; luonghailong.work@gmail.com; Tel: +84988114708 |
+| Local desktop interface | [`messenger_tool.py`](messenger_tool.py) provides the Tkinter workflow. |
+| Persistent Edge session | The tool opens a local `edge_profile/`, which is excluded from Git. |
+| Context review | It reads visible conversation text after the user opens the chosen conversation. |
+| Draft assistance | It can insert a user-reviewed draft into the Messenger editor. |
+| Explicit sending | The regular send action presents a confirmation dialog before pressing Enter. Automatic monitoring creates drafts only; it does not send messages. |
 
-## Reviewer Evidence Map
+## Run locally
 
-- Python desktop source with a practical UI-oriented workflow.
-- Browser automation logic constrained to user-controlled context review.
-- Installation and run instructions suitable for a Windows portfolio environment.
-- Clear public scope that avoids claims of unattended account automation.
+1. Install Python 3 and Microsoft Edge on Windows.
+2. Run [`setup.ps1`](setup.ps1) to create `.venv` and install [`playwright==1.52.0`](requirements.txt).
+3. Run [`run.bat`](run.bat), then sign in to Messenger in the Edge window if needed.
+4. Choose a contact or target, review any extracted context, and inspect the draft before you use the confirmed send action.
 
-## Implementation Review Notes
+The local profile, contact list, virtual environment, API-key environment files, and cache files are excluded by [`.gitignore`](.gitignore). Do not commit browser profiles, conversation content, API keys, or personal contact data.
 
-| Review Point | What To Check |
-|---|---|
-| Problem framing | Confirm that the README explains the engineering purpose without exaggerated claims. |
-| Technical evidence | Inspect the source folders, reports, scripts, schematics, or visual assets listed below. |
-| Reproducibility | Use the local instructions where tools are available, or rely on the release snapshot for portfolio review. |
-| Communication quality | Check headings, captions, tables, and release notes for clear English technical writing. |
-| Professional boundary | Treat the repository as educational or portfolio evidence unless the source explicitly proves production deployment. |
+## Review and safety notes
 
-## Repository Structure
+- This is a local, operator-driven tool. It is not a bulk sender, background messaging service, or unattended account automation system.
+- Browser and platform terms, consent, and account access remain the operator's responsibility.
+- The repository does not include credentials or a shared browser session.
+- The visual asset is self-hosted and its SVG text is ASCII-safe for stable GitHub rendering.
 
-| Path | Reviewer Purpose |
-|---|---|
-| `*.py` | Python source files for desktop UI and automation support. |
-| `requirements.txt` | Python dependency list when available. |
-| `run.bat / setup.ps1` | Windows helper scripts when available. |
-| `assets/` | Motion assets and reviewer card. |
-| `RELEASE_NOTES.md` | Release changelog for the English reviewer guide. |
+## Release
 
-## How To Review
+The [2026 portfolio refresh](https://github.com/lhlizdabezt/messenger-edge-tool/releases/tag/portfolio-refresh-2026-08-29) contains the tagged source snapshot and the checked workflow visual. See [`RELEASE_NOTES.md`](RELEASE_NOTES.md) for the code and documentation changes.
 
-- Read the scope notes first to understand responsible automation boundaries.
-- Inspect the Python UI and browser-control code paths.
-- Check dependency files and Windows helper scripts for setup intent.
-- Use the latest release as the stable public snapshot.
+## Profile and contact
 
-## How To Use Or Inspect Locally
-
-- Create a Python virtual environment with `python -m venv .venv`.
-- Install dependencies with `pip install -r requirements.txt` if that file is present.
-- Install Playwright browser support if required by the local workflow.
-- Run the main Python entry point and keep all final message decisions under human control.
-
-## Visual Evidence
-
-![Animated English reviewer card.](assets/reviewer-card.svg)
-
-*Animated English reviewer card.*
-
-## Release, Tags, And Topics
-
-- Current release target: `reviewer-guide-2026-06-02`.
-- Recommended topic set: `python, tkinter, playwright, microsoft-edge, desktop-app, automation, ai-tools, windows, human-in-the-loop, browser-automation`.
-- Release notes are maintained in [`RELEASE_NOTES.md`](RELEASE_NOTES.md) for stable reviewer traceability.
-- The release archive is intended for HR review, seminar evidence, and academic portfolio verification.
-
-## Contact And Professional Links
-
-| Channel | Link |
-|---|---|
-| GitHub | [https://github.com/lhlizdabezt](https://github.com/lhlizdabezt) |
-| LinkedIn | [https://www.linkedin.com/in/lhlizdabezt](https://www.linkedin.com/in/lhlizdabezt) |
-| Facebook | [https://www.facebook.com/wageseadrake](https://www.facebook.com/wageseadrake) |
-| Instagram | [https://www.instagram.com/lhlizdabezt](https://www.instagram.com/lhlizdabezt) |
-| YouTube | [https://www.youtube.com/@lhlizdabezt](https://www.youtube.com/@lhlizdabezt) |
-| TikTok | [https://www.tiktok.com/@wageseadrake](https://www.tiktok.com/@wageseadrake) |
-| Academic Email | [22207056@student.hcmus.edu.vn](mailto:22207056@student.hcmus.edu.vn) |
-| Professional Email | [luonghailong.work@gmail.com](mailto:luonghailong.work@gmail.com) |
-| Phone | [+84988114708](tel:+84988114708) |
-
-## FAQ
-
-| Question | Answer |
-|---|---|
-| Does this send messages automatically? | The public portfolio scope is human-controlled draft support, not unattended messaging automation. |
-| Why use Microsoft Edge? | The project is designed around a local Windows browser workflow and Playwright integration. |
-| What is the portfolio value? | It demonstrates practical Python UI work, browser automation, and responsible tool boundaries. |
-
-## Scope And Boundaries
-
-- This repository is presented as public engineering portfolio evidence.
-- Claims are intentionally limited to what the repository, report, source files, simulations, or visual assets can support.
-- Public text is written in English (United States) for HR, faculty, and engineering reviewers.
-- SVG text is kept ASCII-safe to reduce rendering errors, mojibake, and missing-glyph blocks.
-- Motion visuals avoid moving dotted paths, curved connector lines, and text-over-line compositions.
-
-## Writing Standard
-
-The public README, release notes, captions, and reviewer-facing metadata are written in a restrained IEEE and Harvard-inspired style: concise, evidence-first, technically accurate, and suitable for Electronics and Telecommunications portfolio review.
+[GitHub](https://github.com/lhlizdabezt) · [LinkedIn](https://www.linkedin.com/in/lhlizdabezt) · [Facebook](https://www.facebook.com/wageseadrake) · [Instagram](https://www.instagram.com/lhlizdabezt) · [YouTube](https://www.youtube.com/@lhlizdabezt) · [TikTok](https://www.tiktok.com/@wageseadrake) · [22207056@student.hcmus.edu.vn](mailto:22207056@student.hcmus.edu.vn) · [luonghailong.work@gmail.com](mailto:luonghailong.work@gmail.com) · [+84988114708](tel:+84988114708)

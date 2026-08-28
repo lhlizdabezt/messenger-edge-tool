@@ -1028,9 +1028,8 @@ class ModernMessengerToolApp(tk.Tk):
         self.auto_draft_enabled = False
         self.auto_after_id = None
         self.auto_last_context = ""
-        self.auto_last_sent_text = ""
         self.auto_last_replied_incoming = ""
-        self.auto_sent_count = 0
+        self.auto_draft_count = 0
         self.auto_interval_ms = 12000
         self.active_page = "compose"
 
@@ -1038,7 +1037,6 @@ class ModernMessengerToolApp(tk.Tk):
         self.name_var = tk.StringVar()
         self.target_var = tk.StringVar()
         self.clear_var = tk.BooleanVar(value=True)
-        self.auto_send_demo_var = tk.BooleanVar(value=False)
         self.status_var = tk.StringVar(value="Ready")
         self.ai_key_var = tk.StringVar(value=os.environ.get("OPENAI_API_KEY", ""))
         self.ai_base_url_var = tk.StringVar(value=DEFAULT_AI_BASE_URL)
@@ -1369,20 +1367,6 @@ class ModernMessengerToolApp(tk.Tk):
         self._button(actions, "Lay o tin nhan lam y", self.use_message_as_goal).pack(side="left", padx=(0, 8))
         self._button(actions, "AI soan nhap", self.draft_with_ai, "primary").pack(side="left")
 
-        demo_row = tk.Frame(panel, bg=self.PANEL)
-        demo_row.pack(fill="x", padx=18, pady=(0, 18))
-        tk.Checkbutton(
-            demo_row,
-            text="Demo auto gui: tu bam Enter sau khi AI soan",
-            variable=self.auto_send_demo_var,
-            bg=self.PANEL,
-            fg=self.RED,
-            activebackground=self.PANEL,
-            activeforeground=self.RED,
-            selectcolor=self.PANEL,
-            font=self.label_font,
-        ).pack(side="left")
-
         return page
 
     def _log_page(self, parent: tk.Frame) -> tk.Frame:
@@ -1530,30 +1514,14 @@ class ModernMessengerToolApp(tk.Tk):
             messagebox.showwarning("Thieu API key", "Nhap API key truoc khi bat auto.")
             return
 
-        if self.auto_send_demo_var.get():
-            ok = messagebox.askyesno(
-                "Bat demo auto gui",
-                "Che do demo se tu bam Enter gui tin sau khi AI soan. "
-                "Chi nen dung voi nick/chat test hoac nguoi da dong y. Bat che do nay chu?",
-            )
-            if not ok:
-                self.auto_send_demo_var.set(False)
-                return
-
         self.auto_draft_enabled = True
         self.auto_last_context = ""
-        self.auto_last_sent_text = ""
         self.auto_last_replied_incoming = ""
-        self.auto_sent_count = 0
+        self.auto_draft_count = 0
         if self.auto_button:
-            button_text = "Tat demo auto gui" if self.auto_send_demo_var.get() else "Tat auto dien nhap"
-            self.auto_button.configure(text=button_text, bg=self.RED, fg="#ffffff", activebackground="#8a1f16")
-        if self.auto_send_demo_var.get():
-            self.log("Da bat Demo auto gui. Tool se ghi nho chat hien tai, moi tin moi chi tu gui 1 lan va tiep tuc cho tin ke tiep.")
-            self._set_status("Demo auto gui dang bat", busy=True)
-        else:
-            self.log("Da bat Auto dien nhap. Tool se ghi nho chat hien tai va chi dien khi co tin moi.")
-            self._set_status("Auto dien nhap dang bat", busy=True)
+            self.auto_button.configure(text="Tat auto dien nhap", bg=self.RED, fg="#ffffff", activebackground="#8a1f16")
+        self.log("Da bat Auto dien nhap. Tool se ghi nho chat hien tai va chi dien khi co tin moi.")
+        self._set_status("Auto dien nhap dang bat", busy=True)
         self._schedule_auto_draft_tick(100)
 
     def stop_auto_draft(self):
@@ -1609,9 +1577,7 @@ class ModernMessengerToolApp(tk.Tk):
         previous_context = self.auto_last_context.strip()
         previous_signature = _auto_context_signature(previous_context)
         previous_latest_incoming = _latest_incoming_line(previous_signature)
-        previous_sent_text = self.auto_last_sent_text.strip()
         previous_replied_incoming = self.auto_last_replied_incoming.strip()
-        auto_send_demo = self.auto_send_demo_var.get()
 
         def task():
             try:
@@ -1639,10 +1605,6 @@ class ModernMessengerToolApp(tk.Tk):
                     self.events.put(("auto_skip", "Auto: chua thay tin moi."))
                     return
                 last_line = current_latest_incoming
-                if previous_sent_text and _same_message_text(last_line, previous_sent_text):
-                    self.events.put(("auto_context_seen", context))
-                    self.events.put(("auto_skip", "Auto: tin cuoi la tin tool vua gui, dang cho doi phuong tra loi."))
-                    return
                 if previous_replied_incoming and current_latest_incoming == previous_replied_incoming:
                     self.events.put(("auto_context_seen", context))
                     self.events.put(("auto_skip", "Auto: tin moi nay da duoc tra loi roi, dang cho tin ke tiep."))
@@ -1661,22 +1623,16 @@ class ModernMessengerToolApp(tk.Tk):
                     context=reply_context,
                     base_url=base_url,
                 )
-                if auto_send_demo:
-                    self.session.send_message(target, draft, self.clear_var.get())
-                    self.auto_sent_count += 1
-                    self.events.put(("auto_sent", draft))
-                else:
-                    self.session.fill_message(target, draft, self.clear_var.get())
-                    self.auto_sent_count += 1
-                    self.events.put(("auto_filled", draft))
+                self.session.fill_message(target, draft, self.clear_var.get())
+                self.auto_draft_count += 1
+                self.events.put(("auto_filled", draft))
                 self.events.put(("auto_replied_incoming", current_latest_incoming))
                 self.events.put(("auto_context_seen", context))
                 self.events.put(("ai_draft", draft))
             except Exception as exc:
                 self.events.put(("auto_error", f"Auto loi: {exc}. Auto van dang bat, se thu lai sau."))
 
-        status = "Demo auto: dang doc va gui..." if auto_send_demo else "Auto: dang doc va dien ban nhap..."
-        self._run_background_task(task, status)
+        self._run_background_task(task, "Auto: dang doc va dien ban nhap...")
 
     def draft_with_ai(self):
         api_key = self.ai_key_var.get().strip() or os.environ.get("OPENAI_API_KEY", "").strip()
@@ -1802,18 +1758,12 @@ class ModernMessengerToolApp(tk.Tk):
                     self.log(message)
                 elif kind == "auto_error":
                     self.log(message)
-                elif kind == "auto_sent":
-                    self.auto_last_sent_text = message.strip()
-                    self.log(f"Demo auto da gui {self.auto_sent_count} tin tu luc bat auto.")
                 elif kind == "auto_filled":
-                    self.log(f"Auto da tao {self.auto_sent_count} tin tu luc bat auto.")
+                    self.log(f"Auto da tao {self.auto_draft_count} tin tu luc bat auto.")
                 elif kind == "done":
                     self.busy = False
                     if self.auto_draft_enabled:
-                        if self.auto_send_demo_var.get():
-                            self._set_status("Demo auto gui dang bat", busy=True)
-                        else:
-                            self._set_status("Auto dien nhap dang bat", busy=True)
+                        self._set_status("Auto dien nhap dang bat", busy=True)
                         self._schedule_auto_draft_tick()
                     else:
                         self._set_status("Ready")
