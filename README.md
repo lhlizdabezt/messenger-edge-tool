@@ -34,7 +34,7 @@ The local profile, contact list, virtual environment, API-key environment files,
 
 ## Release
 
-The [2026 portfolio refresh](https://github.com/lhlizdabezt/messenger-edge-tool/releases/tag/portfolio-refresh-2026-08-29) contains the tagged source snapshot and the checked workflow visual. See [`RELEASE_NOTES.md`](RELEASE_NOTES.md) for the code and documentation changes.
+The [latest release](https://github.com/lhlizdabezt/messenger-edge-tool/releases/latest) contains the tagged source snapshot and the checked workflow visual. See [`RELEASE_NOTES.md`](RELEASE_NOTES.md) for the code and documentation changes.
 
 ## Profile and contact
 

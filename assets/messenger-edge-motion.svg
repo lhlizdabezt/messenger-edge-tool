@@ -11,7 +11,6 @@
       .title { font: 800 34px Segoe UI, Arial, sans-serif; fill: #f8fafc; letter-spacing: 0; }
       .subtitle { font: 650 19px Segoe UI, Arial, sans-serif; fill: #dbeafe; letter-spacing: 0; }
       .chipText { font: 800 15px Segoe UI, Arial, sans-serif; fill: #0f172a; letter-spacing: 0; }
-      .caption { font: 700 16px Segoe UI, Arial, sans-serif; fill: #e2e8f0; letter-spacing: 0; }
       .panel { fill: rgba(15,23,42,.54); stroke: rgba(255,255,255,.20); stroke-width: 1.2; }
       .pulse { animation: pulse 3.4s ease-in-out infinite; transform-origin: center; }
       .soft { animation: soft 4.8s ease-in-out infinite; transform-origin: center; }
@@ -31,6 +30,4 @@
     <g class="pulse"><rect x="658" y="218" width="181" height="48" rx="16" fill="#fee2e2" /><text x="748.5" y="248" text-anchor="middle" class="chipText">python</text></g>
     <g class="pulse"><rect x="857" y="218" width="181" height="48" rx="16" fill="#dbeafe" /><text x="947.5" y="248" text-anchor="middle" class="chipText">tkinter</text></g>
   </g>
-  <rect x="72" y="244" width="956" height="28" rx="14" fill="rgba(15,23,42,.58)" />
-  <text x="550.0" y="263" text-anchor="middle" class="caption">English visual asset - no connector lines - release-backed portfolio evidence</text>
 </svg>

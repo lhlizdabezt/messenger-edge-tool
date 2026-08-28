@@ -1,3 +1,13 @@
+# v1.1.1 - Visual Label Cleanup
+
+## Change
+
+- Removed the nonessential lower caption bar from both SVG workflow visuals after it overlapped the animated skill chips in GitHub rendering.
+
+## Verification
+
+- Rendered both SVG sizes locally and confirmed clear chip labels with no caption or backing bar crossing the panel.
+
 # Portfolio Refresh - August 29, 2026
 
 ## Scope
